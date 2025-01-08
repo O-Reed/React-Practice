@@ -1,3 +1,4 @@
+import PropTypes from "prop-types"
 
 const UserUsername = (props) => {
   return (
@@ -6,6 +7,10 @@ const UserUsername = (props) => {
         <span>{props.username}</span>
     </div>
   )
+}
+
+UserUsername.propTypes = {
+    username: PropTypes.string.isRequired,
 }
 
 export default UserUsername
