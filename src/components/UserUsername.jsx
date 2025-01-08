@@ -1,11 +1,12 @@
 import PropTypes from "prop-types"
+import React from "react"
 
 const UserUsername = (props) => {
   return (
-    <div>
+    <React.Fragment>
         <b>Username : </b>
         <span>{props.username}</span>
-    </div>
+    </React.Fragment>
   )
 }
 
