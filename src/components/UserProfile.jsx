@@ -1,14 +1,13 @@
 
 import UserFavoriteFoods from "./UserFavoriteFoods";
+import UserUsername from "./UserUsername";
 
-const UserProfile = () => {
+const UserProfile = (props) => {
   return (
     <div id="user-profile">
-        <p>Username: Anthony</p>
-        <div>
-            <span>Emaile: </span>
-            <span>anthony@dev.com</span>
-        </div>
+        <UserUsername username="Anthony" />
+        <b>Age: </b>
+        <span>{props.age}</span>
         <UserFavoriteFoods />
     </div>
   )
