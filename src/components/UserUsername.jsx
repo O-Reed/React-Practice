@@ -1,17 +1,18 @@
-import PropTypes from "prop-types"
-import React from "react"
+import PropTypes from "prop-types";
+import React from "react";
+import styles from "./styles.module.css";
 
 const UserUsername = (props) => {
   return (
-    <React.Fragment>
-        <b>Username : </b>
-        <span>{props.username}</span>
-    </React.Fragment>
-  )
-}
+    <>
+      <b className={styles.username}>Username : </b>
+      <span>{props.username}</span>
+    </>
+  );
+};
 
 UserUsername.propTypes = {
-    username: PropTypes.string.isRequired,
-}
+  username: PropTypes.string.isRequired,
+};
 
-export default UserUsername
+export default UserUsername;
