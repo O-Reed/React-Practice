@@ -1,6 +1,10 @@
+import LoginForm from "./components/LoginForm";
 import UserDetails from "./components/UserDetails";
 // import UserProfile from "./components/UserProfile";
 function App() {
+  window.addEventListener("resize", (e) => {
+    console.log(window.innerHeight, window.innerWidth);
+  });
   // const callMe = () => {
   //   console.log("hello");
   // }
@@ -18,20 +22,20 @@ function App() {
   //   },
   // ];
 
-  const isAuthenticated = false;
+  // const isAuthenticated = false;
 
-  if (isAuthenticated) {
-    return (
-      <div>
-        <h1>Welcome, Users!</h1>
-      </div>
-    );
-  }
-  return (
-    <div>
-      <span>You ae not logged in</span>
-    </div>
-  );
+  // if (isAuthenticated) {
+  //   return (
+  //     <div>
+  //       <h1>Welcome, Users!</h1>
+  //     </div>
+  //   );
+  // }
+  // return (
+  //   <div>
+  //     <span>You ae not logged in</span>
+  //   </div>
+  // );
 
   // return (
   //   <div>
@@ -53,6 +57,12 @@ function App() {
   //   ]} callMe={callMe} />
   // </div>
   // );
+
+  return (
+    <div>
+      <LoginForm />
+    </div>
+  );
 }
 
 export default App;
