@@ -3,22 +3,22 @@ import PropTypes from "prop-types";
 
 const UserDetails = (props) => {
   return (
-    <div key={props.mockUser.id}>
+    <div key={props.user.id}>
       <b>ID : </b>
-      <span>{props.mockUser.id}</span>
+      <span>{props.user.id}</span>
       <br />
       <b>Username : </b>
-      <span>{props.mockUser.username}</span>
+      <span>{props.user.username}</span>
       <br />
       <b>Email : </b>
-      <span>{props.mockUser.email}</span>
+      <span>{props.user.email}</span>
       <br />
     </div>
   );
 };
 
 UserDetails.propTypes = {
-  mockUser: PropTypes.shape({
+  user: PropTypes.shape({
     id: PropTypes.number.isRequired,
     username: PropTypes.string.isRequired,
     email: PropTypes.string.isRequired,

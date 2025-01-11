@@ -1,11 +1,12 @@
+import { useState } from "react";
 import LoginForm from "./components/LoginForm";
 import UserDetails from "./components/UserDetails";
 // import UserProfile from "./components/UserProfile";
-import RegisterForm from "./components/RegisterForm";
+// import RegisterForm from "./components/RegisterForm";
 function App() {
-  window.addEventListener("resize", (e) => {
-    console.log(window.innerHeight, window.innerWidth);
-  });
+  // window.addEventListener("resize", (e) => {
+  //   console.log(window.innerHeight, window.innerWidth);
+  // });
   // const callMe = () => {
   //   console.log("hello");
   // }
@@ -59,10 +60,27 @@ function App() {
   // </div>
   // );
 
+  const [users, setUsers] = useState([
+    {
+      id: 1,
+      username: "Anthony",
+      email: "Anthony@gmail.com",
+    },
+    {
+      id: 2,
+      username: "Favoroso",
+      email: "Favoroso@gmail.com",
+    },
+  ]);
+
+  console.log`(1)`;
   return (
     <div>
       {/* <LoginForm /> */}
-      <RegisterForm />
+      {/* <RegisterForm /> */}
+      {users.map((user) => {
+        <UserDetails key={user.id} user={user} />;
+      })}
     </div>
   );
 }
