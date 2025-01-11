@@ -80,6 +80,10 @@ function App() {
       email: "Favoroso@gmail.com",
     },
   ]);
+
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [count, setCount] = useState(3);
   // console.log(users);
   return (
     <div>
@@ -101,8 +105,36 @@ function App() {
       /> */}
       {/* <LoginForm /> */}
       {/* <RegisterForm /> */}
-      {users.map((user) => (
-        <UserDetails key={user.id} user={user} setUsers={setUsers} />
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          const newUser = { id: count, username, email };
+          setCount((currentcount) => currentcount + 1);
+          setUsers((currentUsersState) => [...currentUsersState, newUser]);
+        }}
+      >
+        <div>
+          <label htmlFor="username">username</label>
+          <input
+            name="username"
+            id="username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+          />
+        </div>
+        <div>
+          <label htmlFor="email">email</label>
+          <input
+            name="email"
+            id="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+        </div>
+        <button>Add User</button>
+      </form>
+      {users.map((user, index) => (
+        <UserDetails key={index} user={user} setUsers={setUsers} />
       ))}
     </div>
   );
