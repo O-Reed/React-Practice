@@ -1,7 +1,11 @@
-import { useState } from "react";
+// import { useState } from "react";
 // import LoginForm from "./components/LoginForm";
-import UserDetails from "./components/UserDetails";
+// import UserDetails from "./components/UserDetails";
 // import UserProfile from "./components/UserProfile";
+
+import { useEffect } from "react";
+import { useState } from "react";
+
 // import RegisterForm from "./components/RegisterForm";
 function App() {
   // window.addEventListener("resize", (e) => {
@@ -68,25 +72,37 @@ function App() {
   //   </>
   // );
 
-  const [users, setUsers] = useState([
-    {
-      id: 1,
-      username: "Anthony",
-      email: "Anthony@gmail.com",
-    },
-    {
-      id: 2,
-      username: "Favoroso",
-      email: "Favoroso@gmail.com",
-    },
-  ]);
+  // const [users, setUsers] = useState([
+  //   {
+  //     id: 1,
+  //     username: "Anthony",
+  //     email: "Anthony@gmail.com",
+  //   },
+  //   {
+  //     id: 2,
+  //     username: "Favoroso",
+  //     email: "Favoroso@gmail.com",
+  //   },
+  // ]);
 
-  const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
-  const [count, setCount] = useState(3);
+  // const [username, setUsername] = useState("");
+  // const [email, setEmail] = useState("");
+  const [count, setCount] = useState(0);
+  const [sync, setSync] = useState(false);
   // console.log(users);
+
+  useEffect(() => {
+    console.log("Rendering...");
+    document.title = "React Tutorial ";
+  }, [sync]);
+
+  useEffect(() => {});
+
   return (
     <div>
+      <div>You clicked the button {count} times</div>
+      <button onClick={() => setCount((count) => count + 1)}>Click Me</button>
+      <button onClick={() => setSync((current) => !current)}>sync</button>
       {/* <UserProfile
         username="Anthony"
         age={36}
@@ -105,7 +121,7 @@ function App() {
       /> */}
       {/* <LoginForm /> */}
       {/* <RegisterForm /> */}
-      <form
+      {/* <form
         onSubmit={(e) => {
           e.preventDefault();
           const newUser = { id: count, username, email };
@@ -135,7 +151,7 @@ function App() {
       </form>
       {users.map((user, index) => (
         <UserDetails key={index} user={user} setUsers={setUsers} />
-      ))}
+      ))} */}
     </div>
   );
 }
