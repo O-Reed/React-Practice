@@ -1,6 +1,7 @@
 import LoginForm from "./components/LoginForm";
 import UserDetails from "./components/UserDetails";
 // import UserProfile from "./components/UserProfile";
+import RegisterForm from "./components/RegisterForm";
 function App() {
   window.addEventListener("resize", (e) => {
     console.log(window.innerHeight, window.innerWidth);
@@ -60,7 +61,8 @@ function App() {
 
   return (
     <div>
-      <LoginForm />
+      {/* <LoginForm /> */}
+      <RegisterForm />
     </div>
   );
 }
