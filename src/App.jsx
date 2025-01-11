@@ -95,6 +95,9 @@ function App() {
     console.log("Rendering...");
     document.title = "React Tutorial ";
   }, [sync]);
+
+  useEffect(() => {});
+
   return (
     <div>
       <div>You clicked the button {count} times</div>
