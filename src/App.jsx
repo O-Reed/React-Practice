@@ -3,8 +3,10 @@
 // import UserDetails from "./components/UserDetails";
 // import UserProfile from "./components/UserProfile";
 
-import { useState } from "react";
-
+// import { useState } from "react";
+// import LoginForm from "./components/LoginForm";
+import PostContainer from "./components/PostContainer";
+import UserContext from "./utils/contexts/UserContext";
 // import RegisterForm from "./components/RegisterForm";
 function App() {
   // window.addEventListener("resize", (e) => {
@@ -118,121 +120,136 @@ function App() {
   //   };
   // });
 
-  const [blogPostData, setBlogPostData] = useState({
-    title: "",
-    body: "",
-  });
+  // const [blogPostData, setBlogPostData] = useState({
+  //   title: "",
+  //   body: "",
+  // });
+  // return (
+  //   <div>
+  //     <form
+  //       onSubmit={(e) => {
+  //         e.preventDefault();
+  //         if (blogPostData.title && blogPostData.body) {
+  //           fetch("https://jsonplaceholder.typicode.com/users", {
+  //             method: "POST",
+  //             body: JSON.stringify({
+  //               userId: 1,
+  //               title: blogPostData.title,
+  //               body: blogPostData.body,
+  //             }),
+  //             headers: {
+  //               "Content-type": "application/json; charset=UTF-8",
+  //             },
+  //           })
+  //             .then((response) => response.json())
+  //             .then((data) => {
+  //               console.log("Success!");
+  //               console.log(data);
+  //             })
+  //             .catch((err) => console.log(err));
+  //         }
+  //       }}
+  //     >
+  //       <div>
+  //         <label htmlFor="title">Title</label>
+  //         <input
+  //           type="text"
+  //           id="title"
+  //           value={blogPostData.title}
+  //           onChange={(e) => {
+  //             setBlogPostData((currentBlogPostData) => ({
+  //               ...currentBlogPostData,
+  //               title: e.target.value,
+  //             }));
+  //           }}
+  //         />
+  //       </div>
+  //       <div>
+  //         <label htmlFor="body">Body</label>
+  //         <input
+  //           type="text"
+  //           id="body"
+  //           value={blogPostData.body}
+  //           onChange={(e) => {
+  //             setBlogPostData((currentBlogPostData) => ({
+  //               ...currentBlogPostData,
+  //               body: e.target.value,
+  //             }));
+  //           }}
+  //         />
+  //       </div>
+  //       <button>Create</button>
+  //     </form>
+  //   </div>
+  //   // // <div>
+  //   // //   <div>You clicked the button {count} times</div>
+  //   // //   <button onClick={() => setCount((count) => count + 1)}>Click Me</button>
+  //   // //   <button onClick={() => setSync((current) => !current)}>sync</button>
+  //   //   {/* <UserProfile
+  //   //     username="Anthony"
+  //   //     age={36}
+  //   //     isLoggined={false}
+  //   //     favoriteFoods={[
+  //   //       {
+  //   //         name: "Sushi",
+  //   //         id: "sushi",
+  //   //       },
+  //   //       {
+  //   //         name: "Pizza",
+  //   //         id: "pizza",
+  //   //       },
+  //   //     ]}
+  //   //     callMe={callMe}
+  //   //   /> */}
+  //   //   {/* <LoginForm /> */}
+  //   //   {/* <RegisterForm /> */}
+  //   //   {/* <form
+  //   //     onSubmit={(e) => {
+  //   //       e.preventDefault();
+  //   //       const newUser = { id: count, username, email };
+  //   //       setCount((currentcount) => currentcount + 1);
+  //   //       setUsers((currentUsersState) => [...currentUsersState, newUser]);
+  //   //     }}
+  //   //   >
+  //   //     <div>
+  //   //       <label htmlFor="username">username</label>
+  //   //       <input
+  //   //         name="username"
+  //   //         id="username"
+  //   //         value={username}
+  //   //         onChange={(e) => setUsername(e.target.value)}
+  //   //       />
+  //   //     </div>
+  //   //     <div>
+  //   //       <label htmlFor="email">email</label>
+  //   //       <input
+  //   //         name="email"
+  //   //         id="email"
+  //   //         value={email}
+  //   //         onChange={(e) => setEmail(e.target.value)}
+  //   //       />
+  //   //     </div>
+  //   //     <button>Add User</button>
+  //   //   </form>
+  //   //   {users.map((user, index) => (
+  //   //     <UserDetails key={index} user={user} setUsers={setUsers} />
+  //   //   ))} */}
+  //   // // </div>
+  // );
+
+  // const [toggle, setToggle] = useState(false);
   return (
-    <div>
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
-          if (blogPostData.title && blogPostData.body) {
-            fetch("https://jsonplaceholder.typicode.com/users", {
-              method: "POST",
-              body: JSON.stringify({
-                userId: 1,
-                title: blogPostData.title,
-                body: blogPostData.body,
-              }),
-              headers: {
-                "Content-type": "application/json; charset=UTF-8",
-              },
-            })
-              .then((response) => response.json())
-              .then((data) => {
-                console.log("Success!");
-                console.log(data);
-              })
-              .catch((err) => console.log(err));
-          }
-        }}
-      >
-        <div>
-          <label htmlFor="title">Title</label>
-          <input
-            type="text"
-            id="title"
-            value={blogPostData.title}
-            onChange={(e) => {
-              setBlogPostData((currentBlogPostData) => ({
-                ...currentBlogPostData,
-                title: e.target.value,
-              }));
-            }}
-          />
-        </div>
-        <div>
-          <label htmlFor="body">Body</label>
-          <input
-            type="text"
-            id="body"
-            value={blogPostData.body}
-            onChange={(e) => {
-              setBlogPostData((currentBlogPostData) => ({
-                ...currentBlogPostData,
-                body: e.target.value,
-              }));
-            }}
-          />
-        </div>
-        <button>Create</button>
-      </form>
-    </div>
-    // // <div>
-    // //   <div>You clicked the button {count} times</div>
-    // //   <button onClick={() => setCount((count) => count + 1)}>Click Me</button>
-    // //   <button onClick={() => setSync((current) => !current)}>sync</button>
-    //   {/* <UserProfile
-    //     username="Anthony"
-    //     age={36}
-    //     isLoggined={false}
-    //     favoriteFoods={[
-    //       {
-    //         name: "Sushi",
-    //         id: "sushi",
-    //       },
-    //       {
-    //         name: "Pizza",
-    //         id: "pizza",
-    //       },
-    //     ]}
-    //     callMe={callMe}
-    //   /> */}
-    //   {/* <LoginForm /> */}
-    //   {/* <RegisterForm /> */}
-    //   {/* <form
-    //     onSubmit={(e) => {
-    //       e.preventDefault();
-    //       const newUser = { id: count, username, email };
-    //       setCount((currentcount) => currentcount + 1);
-    //       setUsers((currentUsersState) => [...currentUsersState, newUser]);
-    //     }}
-    //   >
-    //     <div>
-    //       <label htmlFor="username">username</label>
-    //       <input
-    //         name="username"
-    //         id="username"
-    //         value={username}
-    //         onChange={(e) => setUsername(e.target.value)}
-    //       />
-    //     </div>
-    //     <div>
-    //       <label htmlFor="email">email</label>
-    //       <input
-    //         name="email"
-    //         id="email"
-    //         value={email}
-    //         onChange={(e) => setEmail(e.target.value)}
-    //       />
-    //     </div>
-    //     <button>Add User</button>
-    //   </form>
-    //   {users.map((user, index) => (
-    //     <UserDetails key={index} user={user} setUsers={setUsers} />
-    //   ))} */}
-    // // </div>
+    // <div>
+    //   <button onClick={() => setToggle((currentState) => !currentState)}>
+    //     Toggle
+    //   </button>
+    //   {toggle && <LoginForm />}
+    // </div>
+    <UserContext.Provider>
+      <div>
+        <PostContainer />
+      </div>
+    </UserContext.Provider>
   );
 }
 
