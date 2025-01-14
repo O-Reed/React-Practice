@@ -3,7 +3,6 @@
 // import UserDetails from "./components/UserDetails";
 // import UserProfile from "./components/UserProfile";
 
-import { useEffect } from "react";
 import { useState } from "react";
 
 // import RegisterForm from "./components/RegisterForm";
@@ -87,72 +86,153 @@ function App() {
 
   // const [username, setUsername] = useState("");
   // const [email, setEmail] = useState("");
-  const [count, setCount] = useState(0);
-  const [sync, setSync] = useState(false);
+  // const [count, setCount] = useState(0);
+  // const [sync, setSync] = useState(false);
   // console.log(users);
 
-  useEffect(() => {
-    console.log("Rendering...");
-    document.title = "React Tutorial ";
-  }, [sync]);
+  // useEffect(() => {
+  //   console.log("Rendering...");
+  //   document.title = "React Tutorial ";
+  // }, [sync]);
 
-  useEffect(() => {});
+  // useEffect(() => {
+  //   const controller = new AbortController();
 
+  //   async function fetchUsers() {
+  //     try {
+  //       const response = await fetch(
+  //         "https://jsonplaceholder.typicode.com/users",
+  //         { signal: controller.signal }
+  //       );
+  //       const json = await response.json();
+  //       console.log(json);
+  //     } catch (err) {
+  //       console.log(err);
+  //     }
+  //   }
+  //   fetchUsers();
+
+  //   return () => {
+  //     controller.abort();
+  //     console.log(controller.signal);
+  //   };
+  // });
+
+  const [blogPostData, setBlogPostData] = useState({
+    title: "",
+    body: "",
+  });
   return (
     <div>
-      <div>You clicked the button {count} times</div>
-      <button onClick={() => setCount((count) => count + 1)}>Click Me</button>
-      <button onClick={() => setSync((current) => !current)}>sync</button>
-      {/* <UserProfile
-        username="Anthony"
-        age={36}
-        isLoggined={false}
-        favoriteFoods={[
-          {
-            name: "Sushi",
-            id: "sushi",
-          },
-          {
-            name: "Pizza",
-            id: "pizza",
-          },
-        ]}
-        callMe={callMe}
-      /> */}
-      {/* <LoginForm /> */}
-      {/* <RegisterForm /> */}
-      {/* <form
+      <form
         onSubmit={(e) => {
           e.preventDefault();
-          const newUser = { id: count, username, email };
-          setCount((currentcount) => currentcount + 1);
-          setUsers((currentUsersState) => [...currentUsersState, newUser]);
+          if (blogPostData.title && blogPostData.body) {
+            fetch("https://jsonplaceholder.typicode.com/users", {
+              method: "POST",
+              body: JSON.stringify({
+                userId: 1,
+                title: blogPostData.title,
+                body: blogPostData.body,
+              }),
+              headers: {
+                "Content-type": "application/json; charset=UTF-8",
+              },
+            })
+              .then((response) => response.json())
+              .then((data) => {
+                console.log("Success!");
+                console.log(data);
+              })
+              .catch((err) => console.log(err));
+          }
         }}
       >
         <div>
-          <label htmlFor="username">username</label>
+          <label htmlFor="title">Title</label>
           <input
-            name="username"
-            id="username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
+            type="text"
+            id="title"
+            value={blogPostData.title}
+            onChange={(e) => {
+              setBlogPostData((currentBlogPostData) => ({
+                ...currentBlogPostData,
+                title: e.target.value,
+              }));
+            }}
           />
         </div>
         <div>
-          <label htmlFor="email">email</label>
+          <label htmlFor="body">Body</label>
           <input
-            name="email"
-            id="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            type="text"
+            id="body"
+            value={blogPostData.body}
+            onChange={(e) => {
+              setBlogPostData((currentBlogPostData) => ({
+                ...currentBlogPostData,
+                body: e.target.value,
+              }));
+            }}
           />
         </div>
-        <button>Add User</button>
+        <button>Create</button>
       </form>
-      {users.map((user, index) => (
-        <UserDetails key={index} user={user} setUsers={setUsers} />
-      ))} */}
     </div>
+    // // <div>
+    // //   <div>You clicked the button {count} times</div>
+    // //   <button onClick={() => setCount((count) => count + 1)}>Click Me</button>
+    // //   <button onClick={() => setSync((current) => !current)}>sync</button>
+    //   {/* <UserProfile
+    //     username="Anthony"
+    //     age={36}
+    //     isLoggined={false}
+    //     favoriteFoods={[
+    //       {
+    //         name: "Sushi",
+    //         id: "sushi",
+    //       },
+    //       {
+    //         name: "Pizza",
+    //         id: "pizza",
+    //       },
+    //     ]}
+    //     callMe={callMe}
+    //   /> */}
+    //   {/* <LoginForm /> */}
+    //   {/* <RegisterForm /> */}
+    //   {/* <form
+    //     onSubmit={(e) => {
+    //       e.preventDefault();
+    //       const newUser = { id: count, username, email };
+    //       setCount((currentcount) => currentcount + 1);
+    //       setUsers((currentUsersState) => [...currentUsersState, newUser]);
+    //     }}
+    //   >
+    //     <div>
+    //       <label htmlFor="username">username</label>
+    //       <input
+    //         name="username"
+    //         id="username"
+    //         value={username}
+    //         onChange={(e) => setUsername(e.target.value)}
+    //       />
+    //     </div>
+    //     <div>
+    //       <label htmlFor="email">email</label>
+    //       <input
+    //         name="email"
+    //         id="email"
+    //         value={email}
+    //         onChange={(e) => setEmail(e.target.value)}
+    //       />
+    //     </div>
+    //     <button>Add User</button>
+    //   </form>
+    //   {users.map((user, index) => (
+    //     <UserDetails key={index} user={user} setUsers={setUsers} />
+    //   ))} */}
+    // // </div>
   );
 }
 

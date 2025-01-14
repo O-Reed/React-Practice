@@ -7,6 +7,8 @@ const RegisterForm = () => {
     displayname: "",
   });
 
+  const isDisabled =
+    !formFields.username || !formFields.password || !formFields.displayname;
   console.log(formFields);
 
   return (
@@ -50,7 +52,7 @@ const RegisterForm = () => {
           }
         />
       </div>
-      {/* <button disabled={isDisabled}>Sign Up</button> */}
+      <button disabled={isDisabled}>Sign Up</button>
     </form>
   );
 };
