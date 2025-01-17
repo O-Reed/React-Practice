@@ -3,7 +3,7 @@ import { useEffect } from 'react'
 const useDocumentClick = () => {
 
     useEffect(() => {
-        const handleDocumentClick = (e) => {
+        const handleDocumentClick = () => {
             console.log("Clicked Document");
         };
         document.addEventListener("click", handleDocumentClick);

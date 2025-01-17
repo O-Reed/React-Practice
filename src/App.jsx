@@ -1,4 +1,4 @@
-// import { useState } from "react";
+import { useState } from "react";
 // import LoginForm from "./components/LoginForm";
 // import UserDetails from "./components/UserDetails";
 // import UserProfile from "./components/UserProfile";
@@ -6,6 +6,7 @@
 // import { useState } from "react";
 // import LoginForm from "./components/LoginForm";
 import PostContainer from "./components/PostContainer";
+import PostContentButton from "./components/PostContentButton";
 import UserContext from "./utils/contexts/UserContext";
 // import RegisterForm from "./components/RegisterForm";
 function App() {
@@ -238,6 +239,12 @@ function App() {
   // );
 
   // const [toggle, setToggle] = useState(false);
+  const [userData, setUserData] = useState({
+    id: 2,
+    username: "anthony",
+    email: "anthony@cool.com",
+    displayName: " Anthony the Developer",
+  });
   return (
     // <div>
     //   <button onClick={() => setToggle((currentState) => !currentState)}>
@@ -245,11 +252,14 @@ function App() {
     //   </button>
     //   {toggle && <LoginForm />}
     // </div>
-    <UserContext.Provider>
-      <div>
-        <PostContainer />
-      </div>
-    </UserContext.Provider>
+    <>
+      <UserContext.Provider value={{ ...userData, setUserData }}>
+        <div>
+          <PostContainer />
+        </div>
+      </UserContext.Provider>
+      <PostContentButton />
+    </>
   );
 }
 
