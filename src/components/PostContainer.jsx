@@ -10,6 +10,9 @@ const PostContainer = () => {
       <div>
         <span>Post Containter</span>
       </div>
+      <div>{userContextData.id}</div>
+      <div>{userContextData.name}</div>
+      <div>{userContextData.email}</div>
       <div>{userContextData.displayName}</div>
       <PostContent data={data} />
     </div>

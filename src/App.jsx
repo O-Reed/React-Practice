@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 // import LoginForm from "./components/LoginForm";
 // import UserDetails from "./components/UserDetails";
 // import UserProfile from "./components/UserProfile";
@@ -8,6 +8,7 @@ import { useState } from "react";
 import PostContainer from "./components/PostContainer";
 import PostContentButton from "./components/PostContentButton";
 import UserContext from "./utils/contexts/UserContext";
+import useFetchUsers from "./utils/hooks/useFetchUsers";
 // import RegisterForm from "./components/RegisterForm";
 function App() {
   // window.addEventListener("resize", (e) => {
@@ -239,12 +240,15 @@ function App() {
   // );
 
   // const [toggle, setToggle] = useState(false);
-  const [userData, setUserData] = useState({
-    id: 2,
-    username: "anthony",
-    email: "anthony@cool.com",
-    displayName: " Anthony the Developer",
-  });
+  const { user, loading, error } = useFetchUsers(2);
+
+  console.log(user, loading, error);
+  const [userData, setUserData] = useState();
+
+  useEffect(() => {
+    if (!loading && !error && user) setUserData(user);
+  }, [loading, error, user]);
+
   return (
     // <div>
     //   <button onClick={() => setToggle((currentState) => !currentState)}>
@@ -254,11 +258,8 @@ function App() {
     // </div>
     <>
       <UserContext.Provider value={{ ...userData, setUserData }}>
-        <div>
-          <PostContainer />
-        </div>
+        <div>{loading ? "Loading..." : <PostContainer />}</div>
       </UserContext.Provider>
-      <PostContentButton />
     </>
   );
 }

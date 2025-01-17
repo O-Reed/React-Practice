@@ -8,10 +8,10 @@ const useDocumentClick = () => {
         };
         document.addEventListener("click", handleDocumentClick);
         
-  return () => {
-    <div>useDocumentClick</div>
-};
-    });
+    return () => {
+        document.removeEventListener("click", handleDocumentClick);
+    }
+    })
 
 }
 
