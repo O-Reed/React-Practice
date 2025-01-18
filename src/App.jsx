@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import PostContainer from "./components/PostContainer";
 import UserContext from "./utils/contexts/UserContext";
 import useFetchUsers from "./utils/hooks/useFetchUsers";
+import { Outlet, Link, useNavigate } from "react-router-dom";
 // import RegisterForm from "./components/RegisterForm";
 function App() {
   // window.addEventListener("resize", (e) => {
@@ -240,13 +241,15 @@ function App() {
 
   // const [toggle, setToggle] = useState(false);
   const { user, loading, error } = useFetchUsers(2);
-
-  console.log(user, loading, error);
   const [userData, setUserData] = useState();
 
+  const navigate = useNavigate();
+
   useEffect(() => {
-    if (!loading && !error && user) setUserData(user);
-  }, [loading, error, user]);
+    if (!loading && !error && user) {
+      setUserData(user);
+    }
+  }, [loading, error, user, navigate]);
 
   return (
     // <div>
@@ -256,9 +259,45 @@ function App() {
     //   {toggle && <LoginForm />}
     // </div>
     <>
+      <nav>
+        <ul>
+          <li>
+            <Link to="/">Home</Link>
+          </li>
+          <li>
+            <Link to="/users">Users</Link>
+          </li>
+          <li>
+            <Link to="/blog-posts">Blogs</Link>
+          </li>
+        </ul>
+      </nav>
+
+      <div>
+        <label htmlFor="data">Enter data</label>
+        <input
+          type="text"
+          id="data"
+          onChange={(e) => {
+            if (e.target.value.length > 10)
+              navigate("blog-posts", {
+                state: {
+                  posts: [
+                    {
+                      id: 1,
+                      title: "hello world",
+                      content: "welcome to my first post",
+                    },
+                  ],
+                },
+              });
+          }}
+        />
+      </div>
       <UserContext.Provider value={{ ...userData, setUserData }}>
         <div>{loading ? "Loading..." : <PostContainer />}</div>
       </UserContext.Provider>
+      <Outlet />
     </>
   );
 }
